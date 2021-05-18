@@ -41,4 +41,24 @@ class Solution {
     
     return maxStr;
   }
+  
+  //Approach 2
+  public static String longestUniqueSub2(String s) {
+    String result = "";
+    char c[] = s.toCharArray();
+    for(int i =0; i< c.length-1; i++) {
+      Set<Character> set = new HashSet<>();
+      set.add(c[i]);
+      int j = i+1;
+      while(j<c.length-1) {
+        if(!set.add(c[j])) {
+          break;
+        }
+        j++;
+      }
+      result = (result.length() > (s.substring(i,j)).length())  ? result : s.substring(i,j);
+    }
+    return result;
+  }
+  
 }
